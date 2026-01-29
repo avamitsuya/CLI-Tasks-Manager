@@ -29,6 +29,7 @@ def view_tasks():
         print("Tasks:")
         for i in tasks:
             print(i)
+
         
 #The menu to display the options needed
 while True:
@@ -42,13 +43,20 @@ while True:
 
     if choice == 1:
         add_task()
+        print("The number of tasks: ", len(tasks))
     elif choice == 2:
         remove_task()
     elif choice == 3:
         view_tasks()
     elif choice == 4:
-        print("Exiting the Task Manager. Goodbye!")
-        break
+        print("Are you sure you want to exit? (yes/no)")
+        confirm = input("Enter your choice: ").lower()
+        if confirm == "yes":
+            print("Exising the task manager, goobye!. ") 
+            break
+        else:
+            continue
     else:
         print("Invalid choice. Please try again.")
 
+print("The number of tasks: ", len(tasks))
