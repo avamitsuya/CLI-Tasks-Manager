@@ -10,25 +10,30 @@ def add_task():
 
 #2. Remove task
 def remove_task():
-    task = input("Enter the task you would like to romve: ")
-    found = False 
-    for i in tasks:
-        if i == tasks:
-            tasks.reomove(i)
-            found = True
-            print("Task was reomved from the list. ")
-            break
-        if not found:
-            print("This task dpes not exits. ")
-
+    if not tasks:
+        print("No tasks to remove.")
+        return
+    view_tasks()
+    try:
+      task_num = int(input("Enter the task number to remove: "))
+      index = task_num - 1
+      if index < 0 or index >= len(tasks):
+          print("Invalid task number.")
+      else:
+            removed_task = tasks.pop(index) #A built in function to remove an item from a list at a specific index
+            print(f"Task '{removed_task}' was removed successfully.")
+    except ValueError:
+        print("Please enter a valid number.")
+    
+        
 #3. View tasks
 def view_tasks():
     if not tasks:
         print("No tasks available.")
     else:
         print("Tasks:")
-        for i in tasks:
-            print(i)
+        for i, task in enumerate(tasks, start=1):
+            print(f"{i}. {task}")
 
         
 #The menu to display the options needed
@@ -59,4 +64,3 @@ while True:
     else:
         print("Invalid choice. Please try again.")
 
-print("The number of tasks: ", len(tasks))
